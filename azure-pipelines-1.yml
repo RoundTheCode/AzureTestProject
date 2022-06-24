@@ -32,7 +32,7 @@ stages:
           steps:
           - checkout: none
 
-          - script: 'echo $(resources.pipeline.buildPipeline.pipelineID)'
+          - script: 'echo $(resources.pipeline.buildPipeline.projectID)'
           
           #- download: $(resources.pipeline.buildPipeline.pipelineID)
           #  name: 'DownloadBuildArtifacts'
