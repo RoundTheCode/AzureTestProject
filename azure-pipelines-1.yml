@@ -34,7 +34,7 @@ stages:
           - checkout: none
           
           - download: ${{ variables.buildPipeline }}
-            artifact: 'drop'
+            artifact: 'AzureTestProject'
             displayName: 'Download Pipeline Artifacts'
           
           - task: IISWebAppManagementOnMachineGroup@0
