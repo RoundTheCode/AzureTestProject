@@ -11,7 +11,7 @@ variables:
 
 resources:
   pipelines:
-  - pipeline: 'buildPipe'
+  - pipeline: 'buildPipeline'
     project: 'AzureTestProject'
     source: 'Build pipeline'
     branch: 'main'    
@@ -31,11 +31,13 @@ stages:
          deploy:           
           steps:
           - checkout: none
+
+          - script: 'echo $(resources.pipeline.buildPipeline.pipelineID)'
           
-          - download: $(resources.pipeline.buildPipeline.pipelineID)
-            name: 'DownloadBuildArtifacts'
-            displayName: 'Download build artifacts'
-            artifact: 'AzureTestProject'
+          #- download: $(resources.pipeline.buildPipeline.pipelineID)
+          #  name: 'DownloadBuildArtifacts'
+          #  displayName: 'Download build artifacts'
+          #  artifact: 'AzureTestProject'
                     
           - task: IISWebAppManagementOnMachineGroup@0
             name: 'StopIIS'
