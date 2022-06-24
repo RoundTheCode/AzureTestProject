@@ -6,4 +6,8 @@
 trigger:
 - none
 
-
+resources:
+  pipelines:
+  - pipeline: 'BuildPipeline'
+    project: 'AzureTestProject'
+    source: 'Build pipeline'
