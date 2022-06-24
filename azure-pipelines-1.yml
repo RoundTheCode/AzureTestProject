@@ -42,7 +42,9 @@ stages:
               IISDeploymentType: 'IISWebsite'
               ActionIISWebsite: 'StopWebsite'
               StartStopWebsiteName: '${{ variables.IISWebsiteName }}'
-              
+          
+          - script: 'dir $(Pipeline.Workspace)'
+                          
           - task: IISWebAppDeploymentOnMachineGroup@0
             inputs:
               WebSiteName: '${{ variables.IISWebsiteName }}'              
