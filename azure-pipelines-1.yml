@@ -37,7 +37,7 @@ stages:
             artifact: 'AzureTestProject'
             displayName: 'Download Pipeline Artifacts'
           
-          - script: 'dir $(Pipeline.Workspace)\${{ variables.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject\'
+          - script: 'dir $(Pipeline.Workspace)${{ variables.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject\'
           
           - task: IISWebAppManagementOnMachineGroup@0
             inputs:
@@ -48,7 +48,7 @@ stages:
           - task: IISWebAppDeploymentOnMachineGroup@0
             inputs:
               WebSiteName: '${{ variables.IISWebsiteName }}'              
-              Package: '$(Pipeline.Workspace)\${{ variables.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject'
+              Package: '$(Pipeline.Workspace)${{ variables.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject'
               TakeAppOfflineFlag: true
           
           - task: IISWebAppManagementOnMachineGroup@0
