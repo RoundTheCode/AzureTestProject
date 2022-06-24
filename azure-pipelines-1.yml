@@ -15,15 +15,14 @@ resources:
 
 stages:
   - stage: DeployWebsite
-    displayName: '${{ parameters.Environment }} - Deploy website'        
+    displayName: ' Deploy website'        
     dependsOn: TagBuild
     pool:
       vmImage: ubuntu-latest
     
     jobs:    
     - deployment: CopyFiles
-      displayName: '${{ parameters.Environment }} - Copy files'
-      environment: ${{ variables.environment }}
+      displayName: 'Copy files'
       strategy:
        runOnce:
          deploy:           
