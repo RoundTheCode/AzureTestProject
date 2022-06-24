@@ -34,8 +34,7 @@ stages:
 
           - script: 'echo $(resources.pipeline.buildPipeline.projectID)'
           
-          - download: '854ed55a-4188-466d-9beb-97635eb75f1c'
-            name: 'DownloadBuildArtifacts'
+          - download: '$(resources.pipeline.buildPipeline.projectID)'
             displayName: 'Download build artifacts'
             artifact: 'AzureTestProject'
                     
