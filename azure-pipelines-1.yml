@@ -12,7 +12,7 @@ variables:
 
 resources:
   pipelines:
-  - pipeline: ${{ variables.buildPipeline }}
+  - pipeline: '854ed55a-4188-466d-9beb-97635eb75f1c'
     project: 'AzureTestProject'
     source: 'Build pipeline'
     branch: 'main'
