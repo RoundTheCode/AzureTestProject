@@ -6,22 +6,26 @@
 trigger:
 - none
 
+variables:
+  buildPipeline: '854ed55a-4188-466d-9beb-97635eb75f1c'
+  IISWebsiteName: 'AzureTestProject'
+
 resources:
   pipelines:
-  - pipeline: '854ed55a-4188-466d-9beb-97635eb75f1c'
+  - pipeline: ${{ variables.buildPipeline }}
     project: 'AzureTestProject'
     source: 'Build pipeline'
     branch: 'main'
 
 stages:
   - stage: DeployWebsite
-    displayName: ' Deploy website'        
+    displayName: 'Deploy website'        
     pool:
-      vmImage: ubuntu-latest
+      vmImage: windows-latest
     
     jobs:    
-    - deployment: CopyFiles
-      displayName: 'Copy files'
+    - deployment: DeployWebsite
+      displayName: 'Deploy website'
       environment: 'Production.DAVE'
       strategy:
        runOnce:
@@ -29,6 +33,12 @@ stages:
           steps:
           - checkout: none
           
-          - download: '854ed55a-4188-466d-9beb-97635eb75f1c'
+          - download: ${{ variables.buildPipeline }}
             artifact: 'drop'
             displayName: 'Download Pipeline Artifacts'
+          
+          - task: IISWebAppManagementOnMachineGroup@0
+            inputs:
+              IISDeploymentType: 'IISWebsite'
+              ActionIISWebsite: 'StopWebsite'
+              StartStopWebsiteName: ${{ variables.IISWebsiteName }}
