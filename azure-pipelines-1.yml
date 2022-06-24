@@ -16,7 +16,6 @@ resources:
 stages:
   - stage: DeployWebsite
     displayName: ' Deploy website'        
-    dependsOn: TagBuild
     pool:
       vmImage: ubuntu-latest
     
