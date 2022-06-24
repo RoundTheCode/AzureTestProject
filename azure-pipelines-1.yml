@@ -22,6 +22,7 @@ stages:
     jobs:    
     - deployment: CopyFiles
       displayName: 'Copy files'
+      environment: 'Production.DAVE'
       strategy:
        runOnce:
          deploy:           
