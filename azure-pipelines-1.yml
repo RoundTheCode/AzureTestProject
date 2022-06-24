@@ -31,8 +31,10 @@ stages:
          deploy:           
           steps:
           - checkout: none
+
+          - script: 'echo $(resources.pipeline.buildPipeline.projectID)'
           
-          - download: $(resources.pipeline.buildPipeline.projectID)
+          - download: '$(resources.pipeline.buildPipeline.projectID)'
             name: 'DownloadBuildArtifacts'
             displayName: 'Download build artifacts'
             artifact: 'AzureTestProject'
