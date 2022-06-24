@@ -7,7 +7,6 @@ trigger:
 - none
 
 variables:
-  buildPipeline: '854ed55a-4188-466d-9beb-97635eb75f1c'
   IISWebsiteName: 'AzureTestProject'
 
 resources:
@@ -33,25 +32,30 @@ stages:
           steps:
           - checkout: none
           
-          - download: ${{ variables.buildPipeline }}
+          - download: ${{ resources.pipelines.pipeline }}
+            name: 'DownloadBuildArtifacts'
+            displayName: 'Download build artifacts'
             artifact: 'AzureTestProject'
-            displayName: 'Download Pipeline Artifacts'
-          
-          - script: 'dir $(Pipeline.Workspace)\${{ variables.buildPipeline }}\AzureTestProject\RoundTheCode.AzureTestProject\'
-          
+                    
           - task: IISWebAppManagementOnMachineGroup@0
+            name: 'StopIIS'
+            displayName: 'Stop IIS website - ${{ variables.IISWebsiteName }}'
             inputs:
               IISDeploymentType: 'IISWebsite'
               ActionIISWebsite: 'StopWebsite'
               StartStopWebsiteName: '${{ variables.IISWebsiteName }}'          
                           
           - task: IISWebAppDeploymentOnMachineGroup@0
+            name: 'DeployIIS'
+            displayName: 'Deploy IIS website - ${{ variables.IISWebsiteName }}'          
             inputs:
               WebSiteName: '${{ variables.IISWebsiteName }}'              
-              Package: '$(Pipeline.Workspace)\${{ variables.buildPipeline }}\AzureTestProject\RoundTheCode.AzureTestProject'
+              Package: '$(Pipeline.Workspace)\${{ resources.pipelines.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject'
               TakeAppOfflineFlag: true
           
           - task: IISWebAppManagementOnMachineGroup@0
+            name: 'StartIIS'
+            displayName: 'Start IIS website - ${{ variables.IISWebsiteName }}'                
             inputs:
               IISDeploymentType: 'IISWebsite'
               ActionIISWebsite: 'StartWebsite'
