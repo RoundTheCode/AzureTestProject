@@ -37,6 +37,8 @@ stages:
             artifact: 'AzureTestProject'
             displayName: 'Download Pipeline Artifacts'
           
+          - script: 'dir $(Pipeline.Workspace)\${{ variables.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject\'
+          
           - task: IISWebAppManagementOnMachineGroup@0
             inputs:
               IISDeploymentType: 'IISWebsite'
