@@ -41,14 +41,12 @@ stages:
             inputs:
               IISDeploymentType: 'IISWebsite'
               ActionIISWebsite: 'StopWebsite'
-              StartStopWebsiteName: '${{ variables.IISWebsiteName }}'
-          
-          - script: 'dir $(Pipeline.Workspace)'
+              StartStopWebsiteName: '${{ variables.IISWebsiteName }}'          
                           
           - task: IISWebAppDeploymentOnMachineGroup@0
             inputs:
               WebSiteName: '${{ variables.IISWebsiteName }}'              
-              Package: '$(Pipeline.Workspace)\RoundTheCode.AzureTestProject\*'
+              Package: '$(Pipeline.Workspace)\${{ variables.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject\*'
               TakeAppOfflineFlag: true
           
           - task: IISWebAppManagementOnMachineGroup@0
