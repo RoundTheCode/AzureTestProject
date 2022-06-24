@@ -34,10 +34,10 @@ stages:
 
           - script: 'echo $(resources.pipeline.buildPipeline.projectID)'
           
-          - download: '$(resources.pipeline.buildPipeline.projectID)'
-            name: 'DownloadBuildArtifacts'
-            displayName: 'Download build artifacts'
-            artifact: 'AzureTestProject'
+          #- download: '$(resources.pipeline.buildPipeline.projectID)'
+          #  name: 'DownloadBuildArtifacts'
+          #  displayName: 'Download build artifacts'
+          #  artifact: 'AzureTestProject'
                     
           - task: IISWebAppManagementOnMachineGroup@0
             name: 'StopIIS'
