@@ -45,7 +45,7 @@ stages:
             displayName: 'Deploy IIS website - ${{ variables.IISWebsiteName }}'          
             inputs:
               WebSiteName: '${{ variables.IISWebsiteName }}'              
-              Package: '$(Pipeline.Workspace)\$(resources.pipeline.buildPipeline.projectID)\AzureTestProject\RoundTheCode.AzureTestProject'
+              Package: '$(Pipeline.Workspace)\buildPipeline\AzureTestProject\RoundTheCode.AzureTestProject'
               TakeAppOfflineFlag: true
           
           - task: IISWebAppManagementOnMachineGroup@0
