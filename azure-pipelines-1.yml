@@ -9,9 +9,7 @@ resources:
   - pipeline: 'buildPipeline'
     project: 'AzureTestProject'
     source: 'Build pipeline'
-    branch: 'main'
-    trigger: true
-
+    branch: 'main'    
 
 stages:
   - stage: DeployWebsite
@@ -31,5 +29,29 @@ stages:
           
           - download: 'buildPipeline'
             name: 'DownloadBuildArtifacts'            
-            displayName: 'Download build artifacts (Build Id: $(resources.pipeline.buildPipeline.runID))'
-            artifact: 'AzureTestProject'          
+            displayName: 'Download build artifacts'
+            artifact: 'AzureTestProject'
+                    
+          - task: IISWebAppManagementOnMachineGroup@0
+            name: 'StopIIS'
+            displayName: 'Stop IIS website - ${{ variables.IISWebsiteName }}'
+            inputs:
+              IISDeploymentType: 'IISWebsite'
+              ActionIISWebsite: 'StopWebsite'
+              StartStopWebsiteName: '${{ variables.IISWebsiteName }}'          
+                          
+          - task: IISWebAppDeploymentOnMachineGroup@0
+            name: 'DeployIIS'
+            displayName: 'Deploy IIS website - ${{ variables.IISWebsiteName }}'          
+            inputs:
+              WebSiteName: '${{ variables.IISWebsiteName }}'              
+              Package: '$(Pipeline.Workspace)\$(resources.pipeline.buildPipeline.projectID)\AzureTestProject\RoundTheCode.AzureTestProject'
+              TakeAppOfflineFlag: true
+          
+          - task: IISWebAppManagementOnMachineGroup@0
+            name: 'StartIIS'
+            displayName: 'Start IIS website - ${{ variables.IISWebsiteName }}'                
+            inputs:
+              IISDeploymentType: 'IISWebsite'
+              ActionIISWebsite: 'StartWebsite'
+              StartStopWebsiteName: '${{ variables.IISWebsiteName }}'    
