@@ -11,3 +11,8 @@ resources:
     source: 'Build pipeline'
     branch: 'main'
     trigger: true
+
+
+stages:
+  - stage: DeployWebsite
+    displayName: 'Deploy website' 
