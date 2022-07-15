@@ -1,4 +1,15 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+trigger:
+- none
+
+variables:
+  IISWebsiteName: 'AzureTestProject'
+
+resources:
+  pipelines:
+  - pipeline: 'buildPipeline'
+    project: 'AzureTestProject'
+    source: 'Build pipeline'
+    branch: 'main'    
+    trigger:
+     branches:
+     - main
