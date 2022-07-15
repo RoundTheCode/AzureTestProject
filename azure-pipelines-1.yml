@@ -15,4 +15,21 @@ resources:
 
 stages:
   - stage: DeployWebsite
-    displayName: 'Deploy website' 
+    displayName: 'Deploy website'        
+    pool:
+      vmImage: windows-latest
+    
+    jobs:    
+    - deployment: DeployWebsite
+      displayName: 'Deploy website'
+      environment: 'Production.DAVE'
+      strategy:
+       runOnce:
+         deploy:           
+          steps:
+          - checkout: none
+          
+          - download: 'buildPipeline'
+            name: 'DownloadBuildArtifacts'            
+            displayName: 'Download build artifacts (Build Id: $(resources.pipeline.buildPipeline.runID))'
+            artifact: 'AzureTestProject'          
