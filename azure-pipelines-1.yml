@@ -22,7 +22,7 @@ stages:
     jobs:    
     - deployment: DeployWebsite
       displayName: 'Deploy website'
-      environment: 'Production.DAVE'
+      environment: 'Windows 11 server.DAVE'
       strategy:
        runOnce:
          deploy:           
