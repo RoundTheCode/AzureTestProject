@@ -9,7 +9,6 @@ resources:
   - pipeline: 'buildPipeline'
     project: 'AzureTestProject'
     source: 'Build pipeline'
-    branch: 'main'    
     trigger:
      branches:
      - main
