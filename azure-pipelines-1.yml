@@ -9,6 +9,4 @@ resources:
   - pipeline: 'buildPipeline'
     project: 'AzureTestProject'
     source: 'Build pipeline'
-    trigger:
-     branches:
-     - main
+    trigger: true
