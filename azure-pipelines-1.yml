@@ -3,10 +3,11 @@ trigger:
 
 variables:
   IISWebsiteName: 'AzureTestProject'
+  pipeline: 'abcd'
 
 resources:
   pipelines:
-  - pipeline: 'abc'
+  - pipeline: ${{ variables.pipeline }}
     project: 'AzureTestProject'
     source: 'Build pipeline'
     branch: 'main'    
@@ -27,7 +28,7 @@ stages:
           steps:
           - checkout: none
           
-          - download: 'abc'
+          - download: '${{ variables.pipeline }}'
             name: 'DownloadBuildArtifacts'            
             displayName: 'Download build artifacts'
             artifact: 'AzureTestProject'
@@ -45,7 +46,7 @@ stages:
             displayName: 'Deploy IIS website - ${{ variables.IISWebsiteName }}'          
             inputs:
               WebSiteName: '${{ variables.IISWebsiteName }}'              
-              Package: '$(Pipeline.Workspace)\abc\AzureTestProject\RoundTheCode.AzureTestProject'
+              Package: '$(Pipeline.Workspace)\${{ variables.pipeline }}\AzureTestProject\RoundTheCode.AzureTestProject'
               TakeAppOfflineFlag: true
           
           - task: IISWebAppManagementOnMachineGroup@0
