@@ -6,7 +6,7 @@ variables:
 
 resources:
   pipelines:
-  - pipeline: 'buildPipeline'
+  - pipeline: 'abc'
     project: 'AzureTestProject'
     source: 'Build pipeline'
     branch: 'main'    
@@ -27,7 +27,7 @@ stages:
           steps:
           - checkout: none
           
-          - download: 'buildPipeline'
+          - download: 'abc'
             name: 'DownloadBuildArtifacts'            
             displayName: 'Download build artifacts'
             artifact: 'AzureTestProject'
@@ -45,7 +45,7 @@ stages:
             displayName: 'Deploy IIS website - ${{ variables.IISWebsiteName }}'          
             inputs:
               WebSiteName: '${{ variables.IISWebsiteName }}'              
-              Package: '$(Pipeline.Workspace)\buildPipeline\AzureTestProject\RoundTheCode.AzureTestProject'
+              Package: '$(Pipeline.Workspace)\abc\AzureTestProject\RoundTheCode.AzureTestProject'
               TakeAppOfflineFlag: true
           
           - task: IISWebAppManagementOnMachineGroup@0
