@@ -27,7 +27,7 @@ stages:
           steps:
           - checkout: none
           
-          - download: 'abcde'
+          - download: 'abc'
             name: 'DownloadBuildArtifacts'            
             displayName: 'Download build artifacts'
             artifact: 'AzureTestProject'
