@@ -44,7 +44,8 @@ stages:
                     IISDeploymentType: 'IISWebsite'
                     ActionIISWebsite: 'StopWebsite'
                     StartStopWebsiteName: '${{ variables.IISWebsiteName }}'
-                
+
+                - script: echo $(Pipeline.Workspace)\buildPipeline\AzureTestProject\RoundTheCode.AzureTestProject
                 - task: IISWebAppDeploymentOnMachineGroup@0
                   name: 'DeployIIS'
                   displayName: 'Deploy IIS website'                
