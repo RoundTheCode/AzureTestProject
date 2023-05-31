@@ -1,5 +1,10 @@
 {
 	"name": "adf-demo-gt-dev",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
