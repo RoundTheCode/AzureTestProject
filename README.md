@@ -1,3 +1,3 @@
 # Documentation
 
-Full documentation is available at https://www.roundthecode.com/dotnet-samples/azure-devops-pipeline-sample-dotnet-project-ci-cd
+Full documentation is available at https://www.roundthecode.com/dotnet-code-examples/azure-devops-pipeline-example-dotnet-project-ci-cd
