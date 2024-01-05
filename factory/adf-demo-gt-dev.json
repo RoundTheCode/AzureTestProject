@@ -1,0 +1,14 @@
+{
+	"name": "adf-demo-gt-dev",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6e3eae51-ea74-4be6-97e2-510c1803c483",
+		"tenantId": "bc678f5e-c919-4e83-be3b-d1ed967dcf0f"
+	}
+}
